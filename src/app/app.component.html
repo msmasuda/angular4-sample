@@ -1,7 +1,10 @@
 <div class="page">
   <section class="card">
     <div class="card-header">
-      <h3>{{title}}</h3>
+      <div class="float-left"><h3>{{title}}</h3></div>
+      <div class="float-right">
+        <button class="btn btn-outline-primary" type="button" data-toggle="modal" (click)="open()" data-target="#exampleModal">ログイン</button>
+      </div>
     </div>
     <div class="card-block">
       <ng-container *ngFor="let item of items | async">

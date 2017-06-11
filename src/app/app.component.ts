@@ -20,8 +20,12 @@ export class AppComponent {
   constructor(db: AngularFireDatabase) {
     this.items = db.list('/items');
     $('#exampleModal').on('shown.bs.modal', () => {
-      $('#recipient-name').focus()
+      $('#recipient-name').focus();
     });
+  }
+
+  open() {
+    $('#exampleModal').modal('show');
   }
 
   save(comment: string) {
