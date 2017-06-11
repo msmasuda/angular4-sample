@@ -1,7 +1,7 @@
 <div class="page">
   <section class="card">
     <div class="card-header">
-      Angula4 Sample
+      <h3>{{title}}</h3>
     </div>
     <div class="card-block">
       <ng-container *ngFor="let item of items | async">
@@ -10,7 +10,7 @@
           <a href="#" class="icon-rounded">{{item.initial}}</a>
         </div>
         <div class="media-body">
-          <h4 class="media-heading">{{item.name}} Date: {{item.date | chatDate}}</h4>
+          <h4 class="media-heading">{{item.name}} {{item.date | chatDate}}</h4>
           <div>{{item.content}}</div>
         </div>
         <div class="media-right" *ngIf="item.user.uid === current_user.uid">
@@ -27,11 +27,40 @@
         <input type="text" class="form-control"
         [(ngModel)]="content"
         name="comment"
-        placeholder="Comment" ><!--ngModel追加-->
+        placeholder="コメント">
         <span class="input-group-btn">
-          <button class="btn btn-info" type="button" (click)="save(content)">送信</button>
+          <button class="btn btn-outline-info" type="button" (click)="save(content)">送信</button>
         </span>
       </div>
     </form>
   </section>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
 </div>
