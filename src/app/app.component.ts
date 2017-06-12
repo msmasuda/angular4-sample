@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Comment, User } from './class/chat';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import $ from 'jquery/dist/jquery';
 
 const CURRENT_USER: User = new User(1, 'Shinichi Masuda');
 
@@ -19,13 +18,6 @@ export class AppComponent {
 
   constructor(db: AngularFireDatabase) {
     this.items = db.list('/items');
-    $('#exampleModal').on('shown.bs.modal', () => {
-      $('#recipient-name').focus();
-    });
-  }
-
-  open() {
-    $('#exampleModal').modal('show');
   }
 
   save(comment: string) {

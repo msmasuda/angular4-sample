@@ -3,7 +3,7 @@
     <div class="card-header">
       <div class="float-left"><h3>{{title}}</h3></div>
       <div class="float-right">
-        <button class="btn btn-outline-primary" type="button" data-toggle="modal" (click)="open()" data-target="#exampleModal">ログイン</button>
+        <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#loginModal">ログイン</button>
       </div>
     </div>
     <div class="card-block">
@@ -39,30 +39,30 @@
   </section>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="loginModalLabel">ログイン</h5>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>-->
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="userid" class="form-control-label">ユーザーID:</label>
+            <input type="text" class="form-control" id="userid" required>
           </div>
           <div class="form-group">
-            <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="password" class="form-control-label">パスワード:</label>
+            <input type="password" class="form-control" id="password" required>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-outline-secondary">登録する</button>
+        <button type="button" class="btn btn-outline-primary">ログイン</button>
       </div>
     </div>
   </div>
