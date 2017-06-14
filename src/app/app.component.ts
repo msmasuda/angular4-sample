@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -18,12 +19,14 @@ export class AppComponent {
   public content = '';
   public current_user: User;
   authState: Observable<firebase.User>;
+  private route: ActivatedRoute;
+  private router: Router;
 
   constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
     this.authState = afAuth.authState;
     this.items = db.list('/items');
     if(!this.authState) {
-      this.login();
+      this.router.navigate(['/login']);
     } else {
       this.current_user = new User(
         '1',
@@ -55,13 +58,5 @@ export class AppComponent {
 
   delete(key: string) {
     this.items.remove(key);
-  }
-
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
-
-  logout() {
-    this.afAuth.auth.signOut();
   }
 }
