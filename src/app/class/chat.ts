@@ -1,12 +1,16 @@
 import * as moment from 'moment';
 
 export class User {
-  uid: number;
+  uid: string;
   name: string;
+  email: string;
+  photoUrl: string
 
-  constructor(uid: number, name: string) {
+  constructor(uid: string, name: string, email: string, photoUrl: string) {
     this.uid = uid;
     this.name = name;
+    this.email = email;
+    this.photoUrl = photoUrl;
   }
 }
 

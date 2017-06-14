@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Comment, User } from './class/chat';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-const CURRENT_USER: User = new User(1, 'Shinichi Masuda');
+import { User, Comment } from './class/chat';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +16,22 @@ export class AppComponent {
   title = 'チャットサンプル';
   items: FirebaseListObservable<any[]>;
   public content = '';
-  public current_user = CURRENT_USER;
+  public current_user: User;
+  authState: Observable<firebase.User>;
 
-  constructor(db: AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
+    this.authState = afAuth.authState;
     this.items = db.list('/items');
+    if(!this.authState) {
+      this.login();
+    } else {
+      this.current_user = new User(
+        '1',
+        'masuda',
+        'masuda@my-style.jp',
+        ''
+      )
+    }
   }
 
   save(comment: string) {
@@ -41,5 +55,13 @@ export class AppComponent {
 
   delete(key: string) {
     this.items.remove(key);
+  }
+
+  login() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 }
