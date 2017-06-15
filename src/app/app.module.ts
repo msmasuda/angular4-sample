@@ -10,28 +10,39 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ChatDatePipe } from './pipe/chat-date.pipe';
 import { LoginComponent } from './login/login.component';
+import { ChatComponent } from './chat/chat.component';
 
-const appRoute: Routes = [
-  { path: '', component: AppComponent },
+const appRoutes: Routes = [
+  { path: 'chat', component: ChatComponent },
   { path: 'login', component: LoginComponent },
-  // { path: '**', component: PageNotFoundComponent },
-]
+  // {
+  //   path: 'heroes',
+  //   component: HeroListComponent,
+  //   data: { title: 'Heroes List' }
+  // },
+  { path: '',
+    redirectTo: '/chat',
+    pathMatch: 'full'
+  },
+  // { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatDatePipe,
-    LoginComponent
+    LoginComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoute),
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
