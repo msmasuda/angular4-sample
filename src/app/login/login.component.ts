@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   isCreate: boolean;
   title = 'ログイン';
 
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit() {
     this.isCreate = false;
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithEmailAndPassword(this.email, this.password)
     .then((user) => {
       console.log(user);
+      this._router.navigate(['/']);
     })
     .catch(function(error) {
       // Handle Errors here.
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
     .then((user) => {
       console.log(user);
+      this._router.navigate(['/']);
     })
     .catch(function(error) {
       // Handle Errors here.

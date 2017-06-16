@@ -33,6 +33,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.items = this.db.list('/items');
   }
 
   save(comment: string) {
@@ -56,6 +57,19 @@ export class ChatComponent implements OnInit {
 
   delete(key: string) {
     this.items.remove(key);
+  }
+
+  logout() {
+    firebase.auth().signOut()
+    .then(() => {
+      this._router.navigate(['login']);
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      // var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
   }
 
 }
