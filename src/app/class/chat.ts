@@ -4,6 +4,7 @@ export class User {
   uid: string;
   name: string;
   email: string;
+  password: string;
   photoUrl: string
 
   constructor(uid: string, name: string, email: string, photoUrl: string) {

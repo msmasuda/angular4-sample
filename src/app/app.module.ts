@@ -12,22 +12,18 @@ import { AppComponent } from './app.component';
 import { ChatDatePipe } from './pipe/chat-date.pipe';
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
+import { FormComponent } from './form/form.component';
 
 firebase.initializeApp(environment.firebase);
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'login', component: LoginComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
+  { path: 'form', component: FormComponent },
   { path: '',
     redirectTo: '/chat',
     pathMatch: 'full'
-  },
-  // { path: '**', component: PageNotFoundComponent }
+  }
 ];
 
 @NgModule({
@@ -35,7 +31,8 @@ const appRoutes: Routes = [
     AppComponent,
     ChatDatePipe,
     LoginComponent,
-    ChatComponent
+    ChatComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
