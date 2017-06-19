@@ -13,6 +13,7 @@ import { ChatDatePipe } from './pipe/chat-date.pipe';
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { FormComponent } from './form/form.component';
+import { UserComponent } from './user/user.component';
 
 firebase.initializeApp(environment.firebase);
 
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'login', component: LoginComponent },
   { path: 'form', component: FormComponent },
+  { path: 'user', component: UserComponent },
   { path: '',
     redirectTo: '/chat',
     pathMatch: 'full'
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     ChatDatePipe,
     LoginComponent,
     ChatComponent,
-    FormComponent
+    FormComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

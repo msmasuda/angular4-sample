@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { User } from '../class/chat';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class LoginComponent implements OnInit {
+export class UserComponent implements OnInit {
   user: User;
-  title = 'ログイン';
+  title = 'ユーザー登録';
 
   constructor(private _router: Router) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    this.login();
+    this.create();
   }
 
-  login() {
-    firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
+  create() {
+    firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
     .then((user) => {
       console.log(user);
       this._router.navigate(['/']);
@@ -31,7 +30,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  goCreate() {
-    this._router.navigate(['/user']);
+  reset() {
+    this._router.navigate(['/login']);
   }
+
 }
