@@ -38,7 +38,7 @@
     <div class="card-footer">
       <div class="float-right">
         <button type="button" class="btn btn-outline-primary" (click)="reset()">戻る</button>
-        <button type="submit" class="btn btn-outline-primary" [disabled]="!loginForm.form.valied">登録</button>
+        <button type="submit" class="btn btn-outline-primary" [disabled]="v_name.errors || v_email.errors || v_pass.errors">登録</button>
       </div>
     </div>
   </section>

@@ -13,7 +13,9 @@ export class UserComponent implements OnInit {
 
   constructor(private _router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = new User('', '', '', '');
+  }
 
   onSubmit() {
     this.create();
