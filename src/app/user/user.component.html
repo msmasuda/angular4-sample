@@ -4,7 +4,8 @@
       <div class="float-left"><h3>{{title}}</h3></div>
     </div>
     <div class="card-block">
-      <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+      <form #userForm="ngForm">
         <div class="form-group">
           <label for="name" class="form-control-label">名前:</label>
           <input type="text" class="form-control" required
@@ -38,7 +39,7 @@
     <div class="card-footer">
       <div class="float-right">
         <button type="button" class="btn btn-outline-primary" (click)="reset()">戻る</button>
-        <button type="submit" class="btn btn-outline-primary" [disabled]="v_name.errors || v_email.errors || v_pass.errors">登録</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" [disabled]="v_name.errors || v_email.errors || v_pass.errors">登録</button>
       </div>
     </div>
   </section>

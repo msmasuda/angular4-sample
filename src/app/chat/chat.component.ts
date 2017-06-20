@@ -8,13 +8,13 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { User, Comment } from '../class/chat';
 
 @Component({
-  // selector: 'router-outlet',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
   title = 'チャットサンプル';
   items: FirebaseListObservable<any[]>;
+  errorMessage: string;
   public content = '';
   public current_user: User;
 
@@ -64,11 +64,8 @@ export class ChatComponent implements OnInit {
     .then(() => {
       this._router.navigate(['login']);
     })
-    .catch(function(error) {
-      // Handle Errors here.
-      // var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
+    .catch((error) => {
+      this.errorMessage = error.message;
     });
   }
 

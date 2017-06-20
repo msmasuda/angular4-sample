@@ -11,6 +11,7 @@ import { User } from '../class/chat';
 export class LoginComponent implements OnInit {
   user: User;
   title = 'ログイン';
+  errorMessage: string;
 
   constructor(private _router: Router) {}
 
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
       console.log(user);
       this._router.navigate(['/']);
     })
-    .catch(function(error) {
-      var errorMessage = error.message;
+    .catch((error) => {
+      this.errorMessage = error.message;
     });
   }
 

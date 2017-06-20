@@ -7,6 +7,7 @@
       </div>
     </div>
     <div class="card-block">
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
       <ng-container *ngFor="let item of items | async">
       <div class="media">
         <div class="media-left" *ngIf="item.user.uid !== current_user.uid">

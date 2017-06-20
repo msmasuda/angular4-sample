@@ -4,7 +4,8 @@
       <div class="float-left"><h3>{{title}}</h3></div>
     </div>
     <div class="card-block">
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+      <form #loginForm="ngForm">
         <div class="form-group">
           <label for="email" class="form-control-label">メールアドレス:</label>
           <input type="email" class="form-control" required pattern="[A-Za-z0-9.\-]+@[A-Za-z0-9\-]+[.][A-Za-z0-9.\-]+"
@@ -20,7 +21,7 @@
             id="password" name="password" #v_pass="ngModel" [(ngModel)]="user.password" />
           <div class="alert alert-danger" *ngIf="v_pass.errors && (v_pass.dirty || v_pass.touched)">
             <div [hidden]="!v_pass.errors.required ">必須項目</div>
-            <div [hidden]="!v_pass.errors.min_length ">８文字以上</div>
+            <div [hidden]="!v_pass.errors.minlength ">８文字以上</div>
           </div>
         </div>
       </form>
@@ -28,7 +29,7 @@
     <div class="card-footer">
       <div class="float-right">
         <button type="button" class="btn btn-outline-primary" (click)="goCreate()">新規登録</button>
-        <button type="submit" class="btn btn-outline-primary" [disabled]="v_email.errors || v_pass.errors">ログイン</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" [disabled]="v_email.errors || v_pass.errors">ログイン</button>
       </div>
     </div>
   </section>
